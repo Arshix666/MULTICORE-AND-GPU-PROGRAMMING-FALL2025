@@ -41,7 +41,6 @@ $$
 
 This $d$ represents how far the pixel is from the ideal radius.
 Using the same threshold idea as in line drawing, we activate the pixel if $d < 0.5$.
-Because of circular symmetry, the search can be limited to the bounding square $[h-r,,h+r] \times [k-r,,k+r]$.
 
 ## Ellipse Drawing Algorithm
 
@@ -64,8 +63,7 @@ $$
 d = |E - 1|
 $$
 
-If $d$ is below a small threshold (e.g., $0.05$–$0.1$), the pixel is considered part of the ellipse boundary.
-The search region is the bounding rectangle $[h-a,,h+a] \times [k-b,,k+b]$.
+If $d$ is below a small threshold (e.g., $0.05$ – $0.1$), the pixel is considered part of the ellipse boundary.
 
 ## Summary
 
@@ -95,7 +93,6 @@ The thickness parameter t controls how wide the boundary of the shape appears. F
 
 This enables comparison of visual quality and allows students to observe how increasing thickness affects GPU workload and utilization.
 
-These parameters will be passed from the CPU to your shape-dispatch function, which must launch the correct CUDA kernel.
 For this assignment, each shape is specified using the following parameter formats:
 
 * **Line:** coefficients $(a, b, c)$ representing the implicit equation $ax + by + c = 0$.
@@ -147,7 +144,7 @@ Requirements:
 1. **Three kernels (or one parametrized kernel)**
    Implement CUDA kernels that can:
 
-   * Compute, in parallel, whether each pixel belongs to the given line, circle, or ellipse.
+   * Compute, in parallel, whether each pixel belongs to the given shape or not.
    * Write the corresponding black/white value into `arr`.
 
    A common design is:
@@ -215,9 +212,9 @@ Run your program with several values of $N$ (e.g., 256, 512, 1024, or larger if 
 
 Try different block and grid sizes—for example:
 
-* $8 	imes 8$
-* $16 	imes 16$
-* $32 	imes 32$
+* $8 	\times 8$
+* $16 	\times 16$
+* $32 	\times 32$
 
 Measure the execution time for each configuration.
 
